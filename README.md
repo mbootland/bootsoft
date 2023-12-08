@@ -3,10 +3,10 @@
 This website will host my digital CV and Blog, amongst other things.
 
 
+GraphQL Usage:
 
 GraphQL Endpoint:
 http://bootsoft.net:3000/graphql
-
 
 Quering An Author and specifying results:
 
@@ -31,8 +31,6 @@ Quering An Author and specifying results:
   }
 }
 
-
-
 Returning All Authors:
 
 {
@@ -49,3 +47,22 @@ mutation {
     fullName
   }
 }
+
+Input Type Variables:
+
+mutation createAuthor($author: AuthorInputType!) {
+  createAuthor(author: $author) {
+    id
+    fullName
+  }
+}
+
+{
+  "author": {
+  	"firstName":"Connie",
+  	"lastName":"Tester",
+  	"yob":1945,
+  	"isAlive":true
+	}
+}
+

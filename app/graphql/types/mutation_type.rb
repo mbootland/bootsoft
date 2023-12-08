@@ -3,19 +3,16 @@
 module Types
   class MutationType < Types::BaseObject
 
-    # # Moved, keeping for reference.
-    # field :create_author, Types::AuthorType, null: true, description: "Create an Author" do
-    #   argument :first_name, String, required: true
-    #   argument :last_name, String, required: true
-    #   argument :yob, Int, required: true
-    #   argument :is_alive, Boolean, required: true
-    # end
-
-    # # Deleted and move, keeping for reference.
-    # def create_author(**author_attributes)
-    #   Author.create(author_attributes)
-    # end
-
     field :create_author, Types::AuthorType, mutation: Mutations::CreateAuthor
+
+    field :update_author, Boolean, null: false, description: "Update an author" do
+      argument :author, Types::AuthorInputType, required: true
+    end
+
+    def update_author(author:)
+      record = Author.find(author[:id])
+
+      record&.update author.to_h
+    end
   end
 end
