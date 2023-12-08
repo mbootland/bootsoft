@@ -1,7 +1,22 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+# db/seeds.rb
+
+Author.create(first_name: 'Mark', last_name: 'Twain', yob: 1835, is_alive: false)
+Author.create(first_name: 'Virginia', last_name: 'Woolf', yob: 1882, is_alive: false)
+Author.create(first_name: 'George', last_name: 'Orwell', yob: 1903, is_alive: false)
+Author.create(first_name: 'Jane', last_name: 'Austen', yob: 1775, is_alive: false)
+Author.create(first_name: 'Leo', last_name: 'Tolstoy', yob: 1828, is_alive: false)
+Author.create(first_name: 'Emily', last_name: 'Dickinson', yob: 1830, is_alive: false)
+Author.create(first_name: 'Ernest', last_name: 'Hemingway', yob: 1899, is_alive: false)
+Author.create(first_name: 'Haruki', last_name: 'Murakami', yob: 1949, is_alive: true)
+Author.create(first_name: 'J.K.', last_name: 'Rowling', yob: 1965, is_alive: true)
+Author.create(first_name: 'Stephen', last_name: 'King', yob: 1947, is_alive: true)
+Author.create(first_name: 'Agatha', last_name: 'Christie', yob: 1890, is_alive: false)
+Author.create(first_name: 'Charles', last_name: 'Dickens', yob: 1812, is_alive: false)
+Author.create(first_name: 'Fyodor', last_name: 'Dostoevsky', yob: 1821, is_alive: false)
+Author.create(first_name: 'William', last_name: 'Shakespeare', yob: 1564, is_alive: false)
+Author.create(first_name: 'J.R.R.', last_name: 'Tolkien', yob: 1892, is_alive: false)
+Author.create(first_name: 'Gabriel', last_name: 'García Márquez', yob: 1927, is_alive: false)
+Author.create(first_name: 'Franz', last_name: 'Kafka', yob: 1883, is_alive: false)
+Author.create(first_name: 'Herman', last_name: 'Melville', yob: 1819, is_alive: false)
+Author.create(first_name: 'Louisa May', last_name: 'Alcott', yob: 1832, is_alive: false)
+Author.create(first_name: 'Oscar', last_name: 'Wilde', yob: 1854, is_alive: false)
