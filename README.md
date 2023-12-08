@@ -66,3 +66,24 @@ mutation createAuthor($author: AuthorInputType!) {
 	}
 }
 
+Update Author:
+
+mutation UpdateAuthor($author: AuthorInputType!) {
+  updateAuthor(author: $author)
+}
+
+{
+  "author": {
+    "id": "22",
+    "firstName": "Connie",
+    "lastName": "Tester",
+    "yob": 1945,
+    "isAlive": true
+  }
+}
+
+Delete Author:
+
+mutation {
+  deleteAuthor(id: "21")
+}
