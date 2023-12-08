@@ -19,7 +19,7 @@ Quering An Author and specifying results:
     yob
 
     createdAt
-    UpdatedAt
+    updatedAt
 
     fullName
     fullNameReversed
