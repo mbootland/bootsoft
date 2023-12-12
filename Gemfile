@@ -58,3 +58,5 @@ group :test do
   gem "webdrivers"
 end
 gem "graphiql-rails", group: :development
+
+gem "webpacker", "~> 5.4"
