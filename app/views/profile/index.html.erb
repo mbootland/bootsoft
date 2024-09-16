@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <title>Matthew Bootland CV</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <!-- Add this line for Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <%= render 'partials/nav' %>
   <%
     programming_start_date = DateTime.new(2015, 6)
     move_to_japan_start_date = DateTime.new(2016, 9)
