@@ -1,0 +1,7 @@
+<% if current_user&.fetch_liked_posts&.include?(post) %>
+  <%= button_to 'Unlike', post_like_path(post), method: :delete, class: 'btn btn-danger' %>
+<% else %>
+  <%= button_to 'Like', post_like_path(post), method: :post, class: 'btn btn-primary' %>
+<% end %>
+
+<p><%= post.likes.count %> likes</p>

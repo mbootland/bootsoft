@@ -1,0 +1,12 @@
+<h1>Posts</h1>
+<% if current_user %>
+  <%= link_to 'New Post', new_post_path %>
+<% end %>
+<ul>
+  <% @posts.each do |post| %>
+
+    <h1><%= link_to post.title, post %></h1>
+    <p><%= post.body %></p>
+    <p>by <%= post.user.username %></p>
+  <% end %>
+</ul>

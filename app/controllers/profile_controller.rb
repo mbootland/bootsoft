@@ -1,5 +1,5 @@
-class ProfileController < ApplicationController
-  def index
+# frozen_string_literal: true
 
-  end
+class ProfileController < ApplicationController
+  def index; end
 end
