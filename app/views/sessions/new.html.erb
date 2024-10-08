@@ -1,0 +1,9 @@
+<h1>Log in</h1>
+
+<% if logged_in? %>
+  <p>Welcome, <%= current_user.username %>!</p>
+  <%= button_to "Log out", logout_path, method: :post, class: "btn btn-link" %>
+<% else %>
+  <%= render partial: 'sessions/partials/login' %>
+<% end %>
+

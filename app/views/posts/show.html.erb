@@ -1,0 +1,18 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
+<% if current_user == @post.user %>
+  <%= link_to 'Edit', edit_post_path(@post) %>
+<% end %>
+<%= link_to 'Back', posts_path %>
+
+<%= render 'likes/partials/like_button', post: @post %>
+
+<h2>Comments</h2>
+<%= render partial: 'comments/partials/comment', collection: @post.comments.where(parent_id: nil), as: :comment %>
+
+<%= form_with(model: [@post, Comment.new], local: true) do |form| %>
+  <div class="field">
+    <%= form.text_area :content, placeholder: "Add a comment..." %>
+  </div>
+  <%= form.submit "Post Comment" %>
+<% end %>

@@ -1,0 +1,29 @@
+<div class="comment">
+  <p><strong><%= comment.user.username %>:</strong> <%= comment.content %></p>
+
+  <% if comment.likes.exists?(user: current_user) %>
+    <%= button_to 'Unlike', post_comment_like_path(comment.post, comment), method: :delete, class: 'btn btn-danger btn-sm' %>
+  <% else %>
+    <%= button_to 'Like', post_comment_like_path(comment.post, comment), method: :post, class: 'btn btn-primary btn-sm' %>
+  <% end %>
+
+  <%= button_to 'Reply', '#', class: 'btn btn-link', data: { toggle: 'collapse', target: "#reply-form-#{comment.id}" } %>
+
+  <% if comment&.user == current_user || current_user&.is_admin? %>
+    <%= button_to 'Delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+  <% end %>
+
+  <div id="reply-form-<%= comment.id %>" class="collapse">
+    <%= form_with(model: [comment.post, Comment.new], local: true) do |form| %>
+      <%= form.hidden_field :parent_id, value: comment.id %>
+      <div class="field">
+        <%= form.text_area :content, placeholder: "Reply to this comment..." %>
+      </div>
+      <%= form.submit "Post Reply" %>
+    <% end %>
+  </div>
+
+  <div class="replies">
+    <%= render partial: 'comments/partials/comment', collection: comment.replies, as: :comment %>
+  </div>
+</div>

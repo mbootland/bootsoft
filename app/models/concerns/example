@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+module Example
+  extend ActiveSupport::Concern
+
+  included do
+    before_create :example_method
+
+    def self.example_method
+      puts 'example method'
+    end
+  end
+
+  def example_method
+    puts 'example method'
+  end
+end
