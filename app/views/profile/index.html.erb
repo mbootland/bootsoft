@@ -4,9 +4,245 @@
   <meta charset="UTF-8">
   <title>Matthew Bootland CV</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <!-- Add this line for Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: #272822;
+      color: #f8f8f2;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      will-change: scroll-position;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      opacity: 0.3;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .hero-section {
+      position: relative;
+      min-height: 35vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px 20px 20px;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #a6e22e;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      text-shadow: 0 0 10px rgba(166, 226, 46, 0.3);
+    }
+
+    .hero-content .lead {
+      font-size: 1.3rem;
+      color: #f8f8f2;
+      margin-bottom: 15px;
+    }
+
+    .hero-content .location {
+      color: #66d9ef;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-content a {
+      color: #ae81ff;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    .hero-content a:hover {
+      border-bottom-color: #ae81ff;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      background-color: #1e1f1c;
+      padding: 40px;
+      border-radius: 0;
+      margin: -50px auto 0 auto;
+      max-width: 1000px;
+      border-left: 3px solid #49483e;
+      box-shadow: 0 0 0 1px #49483e;
+    }
+
+    .code-comment {
+      color: #75715e;
+      font-style: italic;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.9rem;
+    }
+
+    h2 {
+      color: #f92672;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #49483e;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+
+    h4 {
+      color: #66d9ef;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+
+    h4 a {
+      color: #66d9ef;
+      text-decoration: none;
+    }
+
+    h4 a:hover {
+      color: #a6e22e;
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    .skills-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .column {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .no-bullets {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .no-bullets li {
+      padding: 6px 0;
+      color: #f8f8f2;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+
+    .no-bullets li::before {
+      content: '→ ';
+      color: #a6e22e;
+      margin-right: 8px;
+    }
+
+    p {
+      color: #f8f8f2;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    b {
+      color: #fd971f;
+      font-weight: 600;
+    }
+
+    a {
+      color: #ae81ff;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: #a6e22e;
+    }
+
+    .experience > div,
+    .education > div {
+      background-color: #272822;
+      padding: 25px;
+      margin-bottom: 25px;
+      border-left: 3px solid #49483e;
+      border-top: 1px solid #49483e;
+      border-right: 1px solid #49483e;
+      border-bottom: 1px solid #49483e;
+    }
+
+    .experience > div:hover,
+    .education > div:hover {
+      border-left-color: #a6e22e;
+      background-color: #2d2e27;
+    }
+
+    .tech-tag {
+      display: inline-block;
+      background-color: #49483e;
+      color: #f8f8f2;
+      padding: 3px 8px;
+      margin: 3px;
+      border-radius: 3px;
+      font-size: 0.85rem;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-content .lead {
+        font-size: 1rem;
+      }
+
+      .container {
+        margin: 0;
+        padding: 20px;
+        border-left: none;
+        border-top: 3px solid #49483e;
+      }
+
+      .skills-container {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <%
@@ -18,43 +254,44 @@
     years_in_japan = current_date.year - move_to_japan_start_date.year
   %>
 
-  <div class="container my-5">
+  <div id="particles-js"></div>
 
-    <header class="text-center mb-5">
+  <div class="hero-section">
+    <div class="hero-content">
       <h1>Matthew Bootland</h1>
-      <p class="lead">
-        Software Engineer
-        <br>
-        Kichijoji, Tokyo, Japan
-        <br>
+      <p class="lead">Senior Software Engineer</p>
+      <p class="location">Kichijoji, Tokyo, Japan</p>
+      <p>
         <a href="https://github.com/mbootland">github.com/mbootland</a>
       </p>
-    </header>
+    </div>
+  </div>
 
-    <b>NOTE:</b>
-    This website is developed in Ruby on Rails, you can see the codebase here: <a href="https://github.com/mbootland/bootsoft">github.com/mbootland/bootsoft</a>
-    <br>
-    <br>
+  <div class="container">
+    <p class="code-comment">
+      // NOTE: This website is developed in Ruby on Rails<br>
+      // You can see the codebase here: <a href="https://github.com/mbootland/bootsoft">github.com/mbootland/bootsoft</a>
+    </p>
 
     <section class="skills mb-5">
       <h2>Skills</h2>
-      <div class="skills-container" style="display: flex; justify-content: space-between;">
-        <div class="column" style="flex: 1; margin-right: 10px;">
-          <ul class="no-bullets" style="list-style-type: none; padding: 0;">
+      <div class="skills-container">
+        <div class="column">
+          <ul class="no-bullets">
             <li>Ruby on Rails</li>
             <li>JavaScript</li>
             <li>Python</li>
           </ul>
         </div>
-        <div class="column" style="flex: 1; margin-right: 10px;">
-          <ul class="no-bullets" style="list-style-type: none; padding: 0;">
+        <div class="column">
+          <ul class="no-bullets">
             <li>React Native</li>
             <li>TypeScript</li>
             <li>GraphQL / REST</li>
           </ul>
         </div>
-        <div class="column" style="flex: 1;">
-          <ul class="no-bullets" style="list-style-type: none; padding: 0;">
+        <div class="column">
+          <ul class="no-bullets">
             <li>DevOps</li>
             <li>Docker</li>
             <li>Kubernetes</li>
@@ -65,19 +302,17 @@
 
     <section class="about-me mb-5">
       <h2>About Me</h2>
-      <p>
-        <p>I have lived in Japan for around <%= years_in_japan %> years and I have roughly <%= years_programming %> years of experience as a Software Engineer. 
-        The majority of my experience is in Ruby on Rails with SQL. However, I have used many languages and frameworks such as
-        JavaScript, TypeScript, GoLang, Python and React Native. </p>
+      <p>I have lived in Japan for around <%= years_in_japan %> years and I have roughly <%= years_programming %> years of experience as a Software Engineer. 
+      The majority of my experience is in Ruby on Rails with SQL. However, I have used many languages and frameworks such as
+      JavaScript, TypeScript, GoLang, Python and React Native.</p>
 
-        <p>I worked at GMO GlobalSign for approximately 5 years and wrote roughly 60% of the codebase for the main Rails application. 
-        At Rakuten I was primarily responsible for maintaining a questionairre platform which collected 5-8 million 
-        questionnaire responses per year. I also developed an API that returned hierarchical staff data to be used for the purpose of 
-        cost allocation. </p>
+      <p>I worked at GMO GlobalSign for approximately 5 years and wrote roughly 60% of the codebase for the main Rails application. 
+      At Rakuten I was primarily responsible for maintaining a questionairre platform which collected 5-8 million 
+      questionnaire responses per year. I also developed an API that returned hierarchical staff data to be used for the purpose of 
+      cost allocation.</p>
 
-        <p>I left PlayerData towards the end of October 2025 as I was working in the evenings to match UK hours and there are some visa 
-        complications involved with receiving income from a foreign source.</p>
-      </p>
+      <p>I left PlayerData towards the end of October 2025 as I was working in the evenings to match UK hours and there are some visa 
+      complications involved with receiving income from a foreign source.</p>
     </section>
 
     <section class="experience mb-5">
@@ -87,8 +322,7 @@
         <h4><a href="https://www.playerdata.com">PlayerData</a> (UK), Tokyo (Remote)</h4>
         <p>
           <b>
-            Senior Software Engineer, Product Engineering Team
-            <br>
+            Senior Software Engineer, Product Engineering Team<br>
             Feb 2024 - Oct 2025
           </b>
         </p>
@@ -108,24 +342,26 @@
         </p>
 
         <p>
-          <b>
-            Tech: Ruby on Rails, PostgreSQL, GraphQL, TypeScript, React Native
-          </b>
-        <p>
+          <b>Tech:</b>
+          <span class="tech-tag">Ruby on Rails</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">GraphQL</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">React Native</span>
+        </p>
       </div>
 
       <div>
         <h4>Rakuten, Sapporo (Office)</h4>
         <p>
           <b>
-            Senior Software Engineer, DevOps team (Contract)
-            <br>
+            Senior Software Engineer, DevOps team (Contract)<br>
             Jun 2023 - Feb 2024
           </b>
         </p>
 
         <p>
-          Rakuten is Japan’s largest e-commerce company and the 3rd largest e-commerce company worldwide. 
+          Rakuten is Japan's largest e-commerce company and the 3rd largest e-commerce company worldwide. 
           They also sponsor the football team FC Barcelona. I work in the Cloud Marketing Platform Department (MCPD) and largely work on 2 applications; a lottery service and a questionnaire service.
         </p>
 
@@ -135,18 +371,21 @@
         </p>
 
         <p>
-          <b>
-            Tech: Ruby on Rails, GoLang, Docker, Kubernetes, Microservices, Cloud, Azure, PaaS, IaaS, CaaS.
-          </b>
-        <p>
+          <b>Tech:</b>
+          <span class="tech-tag">Ruby on Rails</span>
+          <span class="tech-tag">GoLang</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Kubernetes</span>
+          <span class="tech-tag">Microservices</span>
+          <span class="tech-tag">Azure</span>
+        </p>
       </div>
 
       <div>
         <h4>Various, Japan (remote)</h4>
         <p>
           <b>
-            Technical Consultant
-            <br>
+            Technical Consultant<br>
             May 2021 - Jun 2023
           </b>
         </p>
@@ -160,8 +399,7 @@
         <h4>GMO GlobalSign, Tokyo (Office & Remote)</h4>
         <p>
           <b>
-            Senior Software Engineer, IDaaS team
-            <br>
+            Senior Software Engineer, IDaaS team<br>
             Sep 2016 – May 2021
           </b>
         </p>
@@ -169,58 +407,122 @@
         <p>
           GMO GlobalSign is a security company whose main business is selling electronic certificates. My job was to develop TrustLogin, their Single Sign-On (SSO) service. 
           I began as a mid level software engineer with only 1 year experience and quickly rose to being evaluated as the most senior member on the team. 
-          At the time of leaving the company roughly 40% of the codebase was written by me. 
+          At the time of leaving the company roughly 40% of the codebase was written by me.
         </p>
 
         <p>
-          <b>Tech summary: Ruby on Rails, GoLang, JavaScript, Docker, AWS, SQL, MongoDB</b    >
+          <b>Tech:</b>
+          <span class="tech-tag">Ruby on Rails</span>
+          <span class="tech-tag">GoLang</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">AWS</span>
+          <span class="tech-tag">SQL</span>
+          <span class="tech-tag">MongoDB</span>
         </p>
       </div>
 
       <div>
-        <h4>Comms365, Milton Keynes, UK </h4>
+        <h4>Comms365, Milton Keynes, UK</h4>
         <p>
           <b>
-            Software Engineer
-            <br>
+            Software Engineer<br>
             Jun 2015 – Jul 2016
           </b>
         </p>
 
         <p>
-          <p>
-            Comms365 is an ISP.  They provide fall back internet connections to companies using a device which bonds multiple 3G/4G connections together, 
-            essentially creating a high speed portable internet terminal.
-          </p>
-
-          <p>
-            I co-developed an Internet Communications Portal which allowed clients to track their own data usage and incoming charges. 
-            It was also used to create and assign SIM cards to companies. Data usage was entered into a sharded Mongo database and then map reduced into hourly, daily and monthly data. 
-            Naturally the rest of the data was relational and used an SQL database. I also developed a stock system and a log processor service.
-          </p>
-
-          <p>
-            <b>Tech summary: Ruby on Rails, JavaScript, SQL, MongoDB</b>
-          </p>
+          Comms365 is an ISP. They provide fall back internet connections to companies using a device which bonds multiple 3G/4G connections together, 
+          essentially creating a high speed portable internet terminal.
         </p>
-      </div>  
+
+        <p>
+          I co-developed an Internet Communications Portal which allowed clients to track their own data usage and incoming charges. 
+          It was also used to create and assign SIM cards to companies. Data usage was entered into a sharded Mongo database and then map reduced into hourly, daily and monthly data. 
+          Naturally the rest of the data was relational and used an SQL database. I also developed a stock system and a log processor service.
+        </p>
+
+        <p>
+          <b>Tech:</b>
+          <span class="tech-tag">Ruby on Rails</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">SQL</span>
+          <span class="tech-tag">MongoDB</span>
+        </p>
+      </div>
     </section>
+
     <section class="education mb-5">
       <h2>Education</h2>
       <div>
+        <h4>The University of Bradford - MSc Computing</h4>
+        <p>
+          Modules: Software Development, Databases, Computer Architecture & Systems, Advanced Software Engineering, etc<br>
+          Sep 2013 - Jul 2016
+        </p>
 
-        <h4>The University of Bradford - MSc Computing</h4> 
-        Modules: Software Development, Databases, Computer Architecture & Systems, Advanced Software Engineering, etc
-        <br>
-        Sep2013 - Jul2016
-
-        <br>
-        <br>
-
-        <h4>The University of Sheffield - BA East Asian Studies</h4> 
-        Sep 2008 - Jul 2012
+        <h4>The University of Sheffield - BA East Asian Studies</h4>
+        <p>Sep 2008 - Jul 2012</p>
       </div>
     </section>
   </div>
+
+  <script>
+    if (typeof particlesJS !== 'undefined') {
+      particlesJS('particles-js', {
+        particles: {
+          number: {
+            value: 30,
+            density: {
+              enable: false
+            }
+          },
+          color: {
+            value: '#a6e22e'
+          },
+          shape: {
+            type: 'circle'
+          },
+          opacity: {
+            value: 0.3,
+            random: false
+          },
+          size: {
+            value: 2,
+            random: true
+          },
+          line_linked: {
+            enable: true,
+            distance: 200,
+            color: '#49483e',
+            opacity: 0.2,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 0.5,
+            direction: 'none',
+            random: false,
+            straight: false,
+            out_mode: 'out',
+            bounce: false
+          }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            onhover: {
+              enable: false
+            },
+            onclick: {
+              enable: false
+            },
+            resize: true
+          }
+        },
+        retina_detect: false
+      });
+    }
+  </script>
 </body>
 </html>
