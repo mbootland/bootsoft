@@ -1,0 +1,54 @@
+# Security
+config/master.key
+.env
+.env.*
+
+# Storage
+storage/
+tmp/storage/
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+*.md
+
+# Logs and temp files
+*.log
+log/*
+tmp/*
+!tmp/.keep
+
+# Test files
+test/
+spec/
+coverage/
+
+# Development files
+.bundle
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Precompiled assets (will be rebuilt in Docker)
+public/assets
+public/packs
+
+# Database
+db/*.sqlite3
+db/*.sqlite3-*
+
+# Node modules (if you add them later)
+node_modules/
+
+# Misc
+mise.toml
