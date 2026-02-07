@@ -37,3 +37,7 @@
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/*.tfvars
