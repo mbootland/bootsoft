@@ -5,10 +5,11 @@ set -e
 echo "Starting setup script..."
 
 # Wait for any background apt-get processes to finish
+echo "Waiting for system locks to release..."
 while fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1 ; do
-    echo "Waiting for other apt-get instances to finish..."
     sleep 5
 done
+systemctl stop unattended-upgrades || true
 
 # 1. Update system and install base dependencies
 export DEBIAN_FRONTEND=noninteractive
@@ -61,12 +62,13 @@ EOF
 
 systemctl restart nginx
 
+# Wrap certbot in a check so it doesn't kill the whole script if DNS isn't ready
 certbot --nginx \
   -d bootsoft.net -d www.bootsoft.net -d bootsoft.org -d www.bootsoft.org \
   --non-interactive \
   --agree-tos \
   --register-unsafely-without-email \
-  --redirect
+  --redirect || echo "Certbot failed - likely due to DNS not pointing here yet. Run manually later."
 
 # 5. Optional: Authenticate Docker with Google Artifact Registry
 # Note: The VM Service Account needs 'Artifact Registry Reader' permissions
