@@ -2,6 +2,14 @@
 # Exit on any error
 set -e
 
+echo "Starting setup script..."
+
+# Wait for any background apt-get processes to finish
+while fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1 ; do
+    echo "Waiting for other apt-get instances to finish..."
+    sleep 5
+done
+
 # 1. Update system and install base dependencies
 export DEBIAN_FRONTEND=noninteractive
 apt-get update && apt-get upgrade -y

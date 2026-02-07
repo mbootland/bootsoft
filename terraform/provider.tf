@@ -10,4 +10,5 @@ terraform {
 provider "google" {
   project = "bootsoft"
   region  = "asia-northeast1"
+  credentials = file("bootsoft-ae33363f8a69.json")
 }
