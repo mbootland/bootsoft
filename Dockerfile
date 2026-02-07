@@ -1,31 +1,40 @@
-# 1. Base image with Ruby 4.0.1
+# 1. Base image
 FROM ruby:4.0.1-slim
 
 # 2. Install dependencies
 RUN apt-get update -qq && \
-  apt-get install -y build-essential libsqlite3-dev nodejs && \
+  apt-get install -y \
+  build-essential \
+  libsqlite3-dev \
+  libyaml-dev \
+  curl \
+  git && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-# 3. Set up the app directory
+# 3. Directory setup
 WORKDIR /app
 
-# 4. Copy dependency files first (for better caching)
+# 4. Dependency caching
 COPY Gemfile Gemfile.lock ./
-RUN bundle install --without development test
+RUN bundle config set --local without 'development test' && \
+  bundle install
 
-# 5. Copy the app code
+# 5. Copy code
 COPY . .
 
-# 6. Precompile assets (CRITICAL for production)
+# 6. Precompile assets (Added dummy secret)
 ENV RAILS_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
-RUN bundle exec rake assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rake assets:precompile
 
-# 7. Create a non-root user
-RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+# 7. Create user and ensure directories exist with correct permissions
+RUN useradd -m -u 1000 appuser && \
+  mkdir -p /app/db /app/log /app/storage /app/tmp && \
+  chown -R appuser:appuser /app/db /app/log /app/storage /app/tmp
 USER appuser
 
-# 8. Start the server (Puma)
-EXPOSE 3000
+# 8. Start with Thruster
+# Cloud Run sets $PORT automatically; Thruster uses it.
+EXPOSE 8080
 CMD ["./bin/thrust", "bundle", "exec", "puma", "-C", "config/puma.rb"]

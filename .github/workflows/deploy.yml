@@ -10,7 +10,7 @@ env:
   REPOSITORY: bootsoft-repo
   IMAGE: bootsoft-app
   INSTANCE_NAME: instance-1
-  ZONE: asia-northeast1-a
+  ZONE: asia-northeast1-b
 
 jobs:
   build-and-deploy:
